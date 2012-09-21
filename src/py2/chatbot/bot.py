@@ -1,14 +1,21 @@
-"""
-A Skype Bot that monitors a game of The Resistance
+# -*- coding: utf-8 -*-
 
-Built on top of Jordan Sherer's chatbot (https://bitbucket.org/widefido/chatbot)
+"""
+Bot: main entry point for the bot
+
 """
 
-import Skype4Py
+import random
 import time
 
-import parse
-import dispatch
+import Skype4Py
+
+import chatbot.parse as parse
+import chatbot.dispatch as dispatch
+import chatbot.handlers as handlers
+
+
+__all__ = ["Bot"]
 
 
 class Bot(object):
@@ -96,17 +103,13 @@ class Bot(object):
         command_string = command_string.strip()
         
         command, arguments = parse.parse_command(command_string)
-
         return self.dispatch_command(command, arguments, message=message, bot=self)
     
 
     def dispatch_command(self, command, *args, **kwargs):
 
         return dispatch.dispatch_to_handlers(command, *args, **kwargs)
-
-def main():
-    bot = Bot()
-    bot.connect_and_listen()
-
+    
+    
 if __name__ == "__main__":
-        main()
+    pass

@@ -34,7 +34,6 @@ def register_handler(command, handler, prepend=False):
 
 def dispatch_to_handlers(command, *args, **kwargs):
     global HANDLERS
-    print HANDLERS
     if command not in HANDLERS:
         return
     
